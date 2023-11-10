@@ -5,6 +5,9 @@ plugins {
     id("com.squareup.wire") version "4.9.1"
 }
 
+version = "0.1.0-SNAPSHOT"
+group = "net.megavex"
+
 repositories {
     mavenCentral()
 }
