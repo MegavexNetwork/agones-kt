@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
+
 plugins {
     kotlin("jvm") version "1.9.20"
     id("com.squareup.wire") version "4.9.1"
@@ -12,8 +14,14 @@ dependencies {
 }
 
 wire {
+    protoLibrary = true
+
     kotlin {
         rpcRole = "client"
         rpcCallStyle = "suspending"
     }
+}
+
+kotlin {
+    explicitApi = ExplicitApiMode.Strict
 }
