@@ -1,6 +1,5 @@
-import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
-
 plugins {
+    `maven-publish`
     kotlin("jvm") version "1.9.20"
     id("com.squareup.wire") version "4.9.1"
 }
@@ -26,5 +25,9 @@ wire {
 }
 
 kotlin {
-    explicitApi = ExplicitApiMode.Strict
+    explicitApi()
+}
+
+publishing.publications.create<MavenPublication>("maven") {
+    from(components["java"])
 }
