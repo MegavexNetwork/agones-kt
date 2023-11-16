@@ -17,6 +17,7 @@ public fun AgonesClient(url: String): AgonesClient {
     val grpcClient = GrpcClient.Builder()
         .client(OkHttpClient.Builder().protocols(listOf(Protocol.H2_PRIOR_KNOWLEDGE)).build())
         .baseUrl(url)
+        .minMessageToCompress(Long.MAX_VALUE)
         .build()
 
     return GrpcAgonesClient(grpcClient.create(SDKClient::class))
