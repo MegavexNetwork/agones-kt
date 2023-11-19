@@ -10,7 +10,7 @@ import kotlin.time.Duration
 
 public fun AgonesClient(): AgonesClient {
     val port = System.getenv("AGONES_SDK_GRPC_PORT")?.toIntOrNull() ?: 9357
-    return AgonesClient("http://localhost:$port")
+    return AgonesClient("http://127.0.0.1:$port")
 }
 
 public fun AgonesClient(url: String): AgonesClient {
