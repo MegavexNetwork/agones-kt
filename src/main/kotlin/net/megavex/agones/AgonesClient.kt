@@ -2,7 +2,6 @@ package net.megavex.agones
 
 import agones.dev.sdk.SDKClient
 import com.squareup.wire.GrpcClient
-import kotlinx.coroutines.flow.Flow
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import java.io.IOException
@@ -34,7 +33,7 @@ public interface AgonesClient {
     public suspend fun shutdown()
 
     @Throws(IOException::class)
-    public suspend fun health(stream: Flow<Unit>)
+    public suspend fun health()
 
     // TODO: GetGameServer, WatchGameServer
 
