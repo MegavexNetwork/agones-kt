@@ -2,19 +2,19 @@ package net.megavex.agones
 
 import agones.dev.sdk.SDKClient
 import com.squareup.wire.GrpcClient
+import kotlinx.coroutines.flow.Flow
 import okhttp3.OkHttpClient
-import okhttp3.Protocol
 import java.io.IOException
 import kotlin.time.Duration
 
-public fun AgonesClient(): AgonesClient {
+public fun AgonesClient(httpClient: OkHttpClient): AgonesClient {
     val port = System.getenv("AGONES_SDK_GRPC_PORT")?.toIntOrNull() ?: 9357
-    return AgonesClient("http://127.0.0.1:$port")
+    return AgonesClient(httpClient, "http://127.0.0.1:$port")
 }
 
-public fun AgonesClient(url: String): AgonesClient {
+public fun AgonesClient(httpClient: OkHttpClient, url: String): AgonesClient {
     val grpcClient = GrpcClient.Builder()
-        .client(OkHttpClient.Builder().protocols(listOf(Protocol.H2_PRIOR_KNOWLEDGE)).build())
+        .client(httpClient)
         .baseUrl(url)
         .minMessageToCompress(Long.MAX_VALUE)
         .build()
@@ -33,7 +33,7 @@ public interface AgonesClient {
     public suspend fun shutdown()
 
     @Throws(IOException::class)
-    public suspend fun health()
+    public suspend fun health(pings: Flow<Unit>)
 
     // TODO: GetGameServer, WatchGameServer
 

@@ -4,6 +4,7 @@ import agones.dev.sdk.Empty
 import agones.dev.sdk.KeyValue
 import agones.dev.sdk.SDKClient
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.Flow
 import kotlin.time.Duration
 import agones.dev.sdk.Duration as AgonesDuration
 
@@ -24,11 +25,19 @@ internal class GrpcAgonesClient(private val client: SDKClient) : AgonesClient {
         client.Shutdown().execute(EMPTY)
     }
 
-    override suspend fun health(): Unit = coroutineScope {
-        // TODO: why is the stream randomly closing?
-        val (send, _) = client.Health().executeIn(this)
-        send.send(EMPTY)
-        send.close()
+    override suspend fun health(pings: Flow<Unit>) {
+        val call = client.Health()
+        try {
+            coroutineScope {
+                val (tx, rx) = client.Health().executeIn(this)
+                rx.receive() // Receive empty response
+                pings.collect {
+                    tx.send(EMPTY)
+                }
+            }
+        } finally {
+            call.cancel()
+        }
     }
 
     override suspend fun setLabel(key: String, value: String) {
