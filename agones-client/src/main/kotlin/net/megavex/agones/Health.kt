@@ -1,4 +1,4 @@
-package agones
+package net.megavex.agones
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
