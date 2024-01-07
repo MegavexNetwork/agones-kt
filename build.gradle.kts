@@ -1,33 +1,25 @@
 plugins {
-    `maven-publish`
-    kotlin("jvm") version "1.9.20"
-    id("com.squareup.wire") version "4.9.1"
+    kotlin("jvm") version "1.9.20" apply false
 }
 
-version = "0.1.0-SNAPSHOT"
-group = "net.megavex"
-
-repositories {
-    mavenCentral()
+allprojects {
+    version = "0.1.0-SNAPSHOT"
+    group = "net.megavex"
 }
 
-dependencies {
-    implementation("com.squareup.wire:wire-grpc-client:4.9.1")
-}
+subprojects {
+    apply(plugin = "maven-publish")
+    apply(plugin = "org.jetbrains.kotlin.jvm")
 
-wire {
-    protoLibrary = true
-
-    kotlin {
-        rpcRole = "client"
-        rpcCallStyle = "suspending"
+    repositories {
+        mavenCentral()
     }
-}
 
-kotlin {
-    explicitApi()
-}
+    dependencies {
+        "implementation"("com.squareup.wire:wire-grpc-client:4.9.1")
+    }
 
-publishing.publications.create<MavenPublication>("maven") {
-    from(components["java"])
+    extensions.getByType(PublishingExtension::class.java).publications.create<MavenPublication>("maven") {
+        from(components["java"])
+    }
 }

@@ -1,4 +1,4 @@
-package net.megavex.agones
+package agones
 
 import agones.dev.sdk.Empty
 import agones.dev.sdk.KeyValue
