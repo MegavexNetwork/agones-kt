@@ -2,34 +2,39 @@ package net.megavex.agones
 
 import agones.dev.sdk.Empty
 import agones.dev.sdk.KeyValue
-import agones.dev.sdk.SDKClient
+import agones.dev.sdk.alpha.CounterUpdateRequest
+import agones.dev.sdk.alpha.GetCounterRequest
+import agones.dev.sdk.alpha.UpdateCounterRequest
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlin.time.Duration
 import agones.dev.sdk.Duration as AgonesDuration
+import agones.dev.sdk.SDKClient as StableClient
+import agones.dev.sdk.alpha.SDKClient as AlphaClient
 
-internal class GrpcAgonesClient(private val client: SDKClient) : AgonesClient {
+internal class GrpcAgonesClient(private val stableClient: StableClient, private val alphaClient: AlphaClient) :
+    AgonesClient {
     private companion object {
         val EMPTY = Empty()
     }
 
     override suspend fun ready() {
-        client.Ready().execute(EMPTY)
+        stableClient.Ready().execute(EMPTY)
     }
 
     override suspend fun allocate() {
-        client.Allocate().execute(EMPTY)
+        stableClient.Allocate().execute(EMPTY)
     }
 
     override suspend fun shutdown() {
-        client.Shutdown().execute(EMPTY)
+        stableClient.Shutdown().execute(EMPTY)
     }
 
     override suspend fun health(pings: Flow<Unit>) {
-        val call = client.Health()
+        val call = stableClient.Health()
         try {
             coroutineScope {
-                val (tx, _) = client.Health().executeIn(this)
+                val (tx, _) = stableClient.Health().executeIn(this)
                 pings.collect {
                     tx.send(EMPTY)
                 }
@@ -40,14 +45,33 @@ internal class GrpcAgonesClient(private val client: SDKClient) : AgonesClient {
     }
 
     override suspend fun setLabel(key: String, value: String) {
-        client.SetLabel().execute(KeyValue(key, value))
+        stableClient.SetLabel().execute(KeyValue(key, value))
     }
 
     override suspend fun setAnnotation(key: String, value: String) {
-        client.SetAnnotation().execute(KeyValue(key, value))
+        stableClient.SetAnnotation().execute(KeyValue(key, value))
     }
 
     override suspend fun reserve(duration: Duration) {
-        client.Reserve().execute(AgonesDuration(seconds = duration.inWholeSeconds))
+        stableClient.Reserve().execute(AgonesDuration(seconds = duration.inWholeSeconds))
+    }
+
+    override suspend fun getCounter(name: String): Counter {
+        val counter = alphaClient.GetCounter().execute(GetCounterRequest(name))
+        return Counter(
+            counter.name,
+            counter.count,
+            counter.capacity
+        )
+    }
+
+    override suspend fun updateCounter(name: String, count: Long?, capacity: Long?, countDiff: Long): Counter {
+        val request = CounterUpdateRequest(name, count, capacity, countDiff)
+        val counter = alphaClient.UpdateCounter().execute(UpdateCounterRequest(request))
+        return Counter(
+            counter.name,
+            counter.count,
+            counter.capacity
+        )
     }
 }
