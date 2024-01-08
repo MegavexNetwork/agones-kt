@@ -29,8 +29,7 @@ internal class GrpcAgonesClient(private val client: SDKClient) : AgonesClient {
         val call = client.Health()
         try {
             coroutineScope {
-                val (tx, rx) = client.Health().executeIn(this)
-                rx.receive() // Receive empty response
+                val (tx, _) = client.Health().executeIn(this)
                 pings.collect {
                     tx.send(EMPTY)
                 }
