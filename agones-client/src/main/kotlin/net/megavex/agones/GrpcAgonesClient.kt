@@ -44,6 +44,14 @@ internal class GrpcAgonesClient(private val stableClient: StableClient, private 
         }
     }
 
+    override suspend fun getGameServer(): GameServer {
+        val gs = stableClient.GetGameServer().execute(EMPTY)
+        val objectMeta = gs.object_meta ?: error("Object meta not set")
+        return GameServer(
+            ObjectMeta(objectMeta.name)
+        )
+    }
+
     override suspend fun setLabel(key: String, value: String) {
         stableClient.SetLabel().execute(KeyValue(key, value))
     }

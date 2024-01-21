@@ -38,7 +38,10 @@ public interface AgonesClient {
     @Throws(IOException::class)
     public suspend fun health(pings: Flow<Unit>)
 
-    // TODO: GetGameServer, WatchGameServer
+    @Throws(IOException::class)
+    public suspend fun getGameServer(): GameServer
+
+    // TODO: WatchGameServer
 
     @Throws(IOException::class)
     public suspend fun setLabel(key: String, value: String)
@@ -55,5 +58,5 @@ public interface AgonesClient {
     public suspend fun getCounter(name: String): Counter
 
     @Throws(IOException::class)
-    public suspend fun updateCounter(name: String, count: Long?, capacity: Long?, countDiff: Long): Counter
+    public suspend fun updateCounter(name: String, count: Long?, capacity: Long?, countDiff: Long = 0): Counter
 }
