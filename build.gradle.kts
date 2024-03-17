@@ -18,7 +18,7 @@ subprojects {
     }
 
     dependencies {
-        "implementation"("com.squareup.wire:wire-grpc-client:4.9.1")
+        "implementation"("com.squareup.wire:wire-grpc-client:4.9.7")
     }
 
     indra {
