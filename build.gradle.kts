@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.20" apply false
+    kotlin("jvm") version "1.9.23" apply false
     id("net.kyori.indra") version "3.1.3"
 }
 
