@@ -1,5 +1,5 @@
 plugins {
-    id("com.squareup.wire") version "4.9.1"
+    id("com.squareup.wire") version "4.9.7"
 }
 
 wire {
