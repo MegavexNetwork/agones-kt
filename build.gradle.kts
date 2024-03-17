@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.20" apply false
+    id("net.kyori.indra") version "3.1.3"
 }
 
 allprojects {
@@ -10,6 +11,7 @@ allprojects {
 subprojects {
     apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "net.kyori.indra")
 
     repositories {
         mavenCentral()
@@ -19,7 +21,14 @@ subprojects {
         "implementation"("com.squareup.wire:wire-grpc-client:4.9.1")
     }
 
-    extensions.getByType(PublishingExtension::class.java).publications.create<MavenPublication>("maven") {
-        from(components["java"])
+    indra {
+        github("MegavexNetwork", "agones-kt") {
+            ci(true)
+        }
+        mitLicense()
+
+        javaVersions {
+            minimumToolchain(17)
+        }
     }
 }
