@@ -1,6 +1,6 @@
 plugins {
     id("megavex.base-conventions")
-    id("com.squareup.wire") version "4.9.7"
+    id("com.squareup.wire") version "4.9.8"
 }
 
 wire {
