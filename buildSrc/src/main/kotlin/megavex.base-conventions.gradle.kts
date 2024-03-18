@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    "implementation"("com.squareup.wire:wire-grpc-client:4.9.7")
+    "implementation"("com.squareup.wire:wire-grpc-client:4.9.8")
 }
 
 indra {
