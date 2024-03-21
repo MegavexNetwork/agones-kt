@@ -8,8 +8,10 @@ import kotlin.time.Duration
 import agones.dev.sdk.SDKClient as StableClient
 import agones.dev.sdk.alpha.SDKClient as AlphaClient
 
+private const val DEFAULT_AGONES_PORT = 9357
+
 public fun AgonesClient(httpClient: OkHttpClient): AgonesClient {
-    val port = System.getenv("AGONES_SDK_GRPC_PORT")?.toIntOrNull() ?: 9357
+    val port = System.getenv("AGONES_SDK_GRPC_PORT")?.toIntOrNull() ?: DEFAULT_AGONES_PORT
     return AgonesClient(httpClient, "http://127.0.0.1:$port")
 }
 

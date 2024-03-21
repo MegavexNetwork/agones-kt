@@ -1,4 +1,4 @@
 allprojects {
-    version = "0.1.0-SNAPSHOT"
     group = "net.megavex"
+    version = "0.1.0-SNAPSHOT"
 }

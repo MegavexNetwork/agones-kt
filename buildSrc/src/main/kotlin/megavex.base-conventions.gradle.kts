@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm")
     id("net.kyori.indra")
     id("net.kyori.indra.publishing")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 repositories {
@@ -9,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    "implementation"("com.squareup.wire:wire-grpc-client:4.9.8")
+    implementation("com.squareup.wire:wire-grpc-client:4.9.8")
 }
 
 indra {
@@ -21,4 +22,9 @@ indra {
     javaVersions {
         minimumToolchain(17)
     }
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    config.setFrom("$projectDir/detekt.yml")
 }
