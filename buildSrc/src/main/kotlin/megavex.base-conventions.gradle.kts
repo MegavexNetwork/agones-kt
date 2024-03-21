@@ -22,6 +22,8 @@ indra {
     javaVersions {
         minimumToolchain(17)
     }
+
+    publishAllTo("github", "https://maven.pkg.github.com/MegavexNetwork/agones-kt")
 }
 
 detekt {
