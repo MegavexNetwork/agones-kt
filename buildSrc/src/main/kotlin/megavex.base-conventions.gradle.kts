@@ -24,6 +24,17 @@ indra {
     }
 
     publishAllTo("github", "https://maven.pkg.github.com/MegavexNetwork/agones-kt")
+    signWithKeyFromPrefixedProperties("megavex")
+    configurePublications {
+        pom {
+            developers {
+                developer {
+                    id = "vytskalt"
+                    name = "vytskalt"
+                }
+            }
+        }
+    }
 }
 
 detekt {

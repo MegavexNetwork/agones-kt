@@ -10,6 +10,6 @@ repositories {
 }
 
 dependencies {
-    implementation("net.megavex:agones-client:0.1.0")
+    implementation("net.megavex:agones-client:0.1.0-SNAPSHOT")
 }
 ```
