@@ -6,10 +6,12 @@ Suspending [Agones](https://github.com/googleforgames/agones) client SDK for Kot
 
 ```kotlin
 repositories {
-    maven("https://maven.pkg.github.com/MegavexNetwork/*")
+    maven("https://jitpack.io")
 }
 
 dependencies {
-    implementation("net.megavex:agones-client:0.1.0-SNAPSHOT")
+    implementation("com.github.megavexnetwork:agones-kt:$version")
 }
 ```
+
+Get the version from [here](https://jitpack.io/#megavexnetwork/agones-kt)
