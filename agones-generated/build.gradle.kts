@@ -11,7 +11,7 @@ wire {
     }
 
     sourcePath {
-        srcJar("com.google.protobuf:protobuf-java:4.26.0")
+        srcJar("com.google.protobuf:protobuf-java:4.26.1")
         include("google/protobuf/field_mask.proto")
     }
 
