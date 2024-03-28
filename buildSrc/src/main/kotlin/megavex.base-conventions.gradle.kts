@@ -5,12 +5,15 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
 }
 
+// expose version catalog
+val libs = extensions.getByType(org.gradle.accessors.dm.LibrariesForLibs::class)
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation("com.squareup.wire:wire-grpc-client:4.9.8")
+    implementation(libs.wireGrpcClient)
 }
 
 indra {
