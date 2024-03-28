@@ -1,6 +1,6 @@
 plugins {
     id("megavex.base-conventions")
-    id("com.squareup.wire") version "4.9.8"
+    alias(libs.plugins.wire)
 }
 
 wire {
@@ -11,7 +11,7 @@ wire {
     }
 
     sourcePath {
-        srcJar("com.google.protobuf:protobuf-java:4.26.0")
+        srcJar(libs.protobuf)
         include("google/protobuf/field_mask.proto")
     }
 

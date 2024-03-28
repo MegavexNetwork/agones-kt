@@ -1,0 +1,16 @@
+[versions]
+kotlin = "1.9.23"
+indra = "3.1.3"
+detekt = "1.23.6"
+protobuf = "4.26.1"
+wire = "4.9.8"
+
+[libraries]
+protobuf = { module = "com.google.protobuf:protobuf-java", version.ref = "protobuf" }
+buildKotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+buildIndra = { module = "net.kyori:indra-common", version.ref = "indra" }
+buildDetekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+
+[plugins]
+indraSonatype = { id = "net.kyori.indra.publishing.sonatype", version.ref = "indra" }
+wire = { id = "com.squareup.wire", version.ref = "wire" }
