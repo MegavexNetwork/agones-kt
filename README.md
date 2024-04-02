@@ -13,5 +13,3 @@ dependencies {
     implementation("net.megavex:agones-client:0.1.0")
 }
 ```
-
-Get the version from [here](https://jitpack.io/#megavexnetwork/agones-kt)
