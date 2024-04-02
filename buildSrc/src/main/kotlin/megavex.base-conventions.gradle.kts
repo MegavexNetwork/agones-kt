@@ -3,6 +3,7 @@ plugins {
     id("net.kyori.indra")
     id("net.kyori.indra.publishing")
     id("io.gitlab.arturbosch.detekt")
+    id("com.gradleup.nmcp")
 }
 
 val libs = extensions.getByType(org.gradle.accessors.dm.LibrariesForLibs::class)
@@ -36,6 +37,19 @@ indra {
                     name = "vytskalt"
                 }
             }
+        }
+    }
+}
+
+nmcp {
+    val centralUsername = findProperty("centralUsername") as String?
+    val centralPassword = findProperty("centralPassword") as String?
+
+    if (centralUsername != null && centralPassword != null) {
+        publishAllPublications {
+            username = centralUsername
+            password = centralPassword
+            publicationType = "USER_MANAGED"
         }
     }
 }

@@ -3,10 +3,6 @@ plugins {
     alias(libs.plugins.wire)
 }
 
-nmcp {
-    publishAllPublications {}
-}
-
 wire {
     protoLibrary = true
 
