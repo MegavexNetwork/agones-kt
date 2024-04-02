@@ -12,4 +12,5 @@ buildDetekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.6"
 
 [plugins]
 indraSonatype = { id = "net.kyori.indra.publishing.sonatype", version.ref = "indra" }
+nexusPublish = { id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0-rc-2" }
 wire = { id = "com.squareup.wire", version.ref = "wire" }

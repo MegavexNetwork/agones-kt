@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.indraSonatype)
+    alias(libs.plugins.nexusPublish)
 }
 
 allprojects {
