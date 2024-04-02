@@ -5,7 +5,6 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
 }
 
-// expose version catalog
 val libs = extensions.getByType(org.gradle.accessors.dm.LibrariesForLibs::class)
 
 repositories {
