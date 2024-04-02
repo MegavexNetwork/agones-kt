@@ -1,5 +1,5 @@
 allprojects {
     group = "net.megavex"
-    version = "0.1.0"
+    version = "0.2.0-SNAPSHOT"
     description = "Suspending Agones client SDK for Kotlin"
 }
