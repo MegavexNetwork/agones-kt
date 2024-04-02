@@ -1,5 +1,5 @@
 plugins {
-    id("megavex.base-conventions")
+    id("net.megavex.agones.base-conventions")
     alias(libs.plugins.wire)
 }
 
