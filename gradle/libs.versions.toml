@@ -6,7 +6,7 @@ wire = "4.9.9"
 protobuf = "com.google.protobuf:protobuf-java:4.26.1"
 wireGrpcClient = { module = "com.squareup.wire:wire-grpc-client", version.ref = "wire" }
 
-buildKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23"
+buildKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.25"
 buildIndra = { module = "net.kyori:indra-common", version.ref = "indra" }
 buildDetekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.6"
 buildNmcp = "com.gradleup.nmcp:com.gradleup.nmcp.gradle.plugin:0.0.7"
