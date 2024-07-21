@@ -9,7 +9,7 @@ wireGrpcClient = { module = "com.squareup.wire:wire-grpc-client", version.ref = 
 buildKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23"
 buildIndra = { module = "net.kyori:indra-common", version.ref = "indra" }
 buildDetekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.6"
-buildNmcp = "com.gradleup.nmcp:com.gradleup.nmcp.gradle.plugin:0.0.7"
+buildNmcp = "com.gradleup.nmcp:com.gradleup.nmcp.gradle.plugin:0.0.9"
 
 [plugins]
 wire = { id = "com.squareup.wire", version.ref = "wire" }
